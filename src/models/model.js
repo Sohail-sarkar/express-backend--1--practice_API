@@ -21,8 +21,8 @@ const Useridentity = new Schema({
 
   password: {
     type: String,
-    minLength: 6,
-    maxLength: 8,
+    // minlength: 6,
+    // max: 8,
   },
 
   gender: {

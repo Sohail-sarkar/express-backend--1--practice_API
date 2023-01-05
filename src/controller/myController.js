@@ -1,17 +1,21 @@
 // Methods to be executed on routes
 
-// const Shadow = require("../models/model"); //Shadow is imported from model
+const Shadow = require("../models/model"); //Shadow is imported from model
+const bcrypt = require("bcrypt");
 
 // ========================= POST API ========================= {1}
 
 const createData = async (req, res) => {
   const { name, email, password, gender } = req.body;
 
+  const hashPassword = await bcrypt.hash(password.toString(), 10); //conform password and validation   // Store hash in the database
+  console.log("hashPassword", hashPassword);
+
   try {
     await new Shadow({
       name,
       email,
-      password,
+      password: hashPassword,
       gender,
     }).save();
 
